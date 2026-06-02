@@ -1,1 +1,144 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Montserrat', Arial, sans-serif;
+  background-image: url('https://i.imgur.com/tXDYate.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  /* Flexbox do centrowania pionowego */
+  display: flex;
+  flex-direction: column;
+}
 
+body {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Wyśrodkowanie pionowe */
+  align-items: center;     /* Wyśrodkowanie poziome */
+  min-height: 100vh;
+}
+
+.neon-cards-container {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  padding: 0;
+  margin: 0;
+}
+
+.neon-flip-card {
+  background: transparent;
+  width: 250px;
+  height: 330px;
+  perspective: 1200px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.neon-flip-card-inner {
+  position: relative;
+  width: 100%;
+  height:
+ 100%;
+  transition: transform 0.7s cubic-bezier(.4,2,.3,.1);
+  transform-style: preserve-3d;
+}
+
+.neon-flip-card.flipped .neon-flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.neon-flip-card-front, .neon-flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 24px;
+  box-shadow: 0 0 24px 4px #00F6FF33, 0 0 48px 8px #B896FF22, 0 0 80px 16px #FFD70022;
+  border: 2px solid #00F6FF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 24px 12px 12px 12px;
+  text-align: center;
+}
+
+.neon-flip-card-front {
+  background: linear-gradient(135deg, #23243a 80%, #00F6FF22 100%);
+  color: #fff;
+  z-index: 2;
+}
+
+.neon-flip-card-back {
+  background: linear-gradient(135deg, #B896FF 60%, #23243a 100%);
+  color: #fff;
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+
+.card-image img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 16px 4px #B896FF88;
+  margin-bottom: 12px;
+}
+
+.card-ribbon {
+  background: linear-gradient(90deg, #B896FF 0%, #00F6FF 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 6px 18px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px #00F6FF44;
+  letter-spacing: 1px;
+}
+
+.neon-flip-card-front h3, .neon-flip-card-back h4 {
+  color: #fff;
+  font-size: 20px;
+  margin: 10px 0 4px 0;
+  font-weight: 700;
+}
+
+.card-position {
+  color: #00F6FF;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.neon-flip-card-front p, .neon-flip-card-back p {
+  color: #fff;
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+/* Responsywność: na małych ekranach karty są przewijane poziomo */
+@media (max-width: 900px) {
+  .neon-cards-container {
+    gap: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  .neon-flip-card {
+    width: 160px;
+    height: 220px;
+  }
+  .card-image img {
+    width: 70px;
+    height: 70px;
+  }
+}
